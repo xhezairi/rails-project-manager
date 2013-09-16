@@ -19,6 +19,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    unless user_signed_in? and @project.users.include? current_user
+      redirect_to root_path, notice: 'Get outta here!'
+    end
   end
 
   # POST /projects
