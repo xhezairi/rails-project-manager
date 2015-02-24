@@ -5,5 +5,15 @@
   <%= @project.name %>
 </p>
 
+  <ul>
+  <% @tasks.each do |task| %>
+    <li><%= task.name %></li>
+    <td><%= link_to 'Edit', edit_task_path(task), :remote => true %></td>
+    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?', remote: true } %></td>
+			<%#= link_to "Ajax", link_path(link), method: :delete, id: link.id, data: { confirm: "Really?", remote: true } %>
+  <% end %>
+  </ul>
+
+<%= link_to 'Add Task', new_task_path(project_id: @project.id) %> |
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

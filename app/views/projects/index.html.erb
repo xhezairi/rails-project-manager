@@ -12,10 +12,12 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
-        <td>
+        <td><%#= project.owners.to_yaml %>
           <%= link_to 'Show', project, class: 'btn' %>
-          <%= link_to 'Edit', edit_project_path(project), class: 'btn' %>
-          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+					<%# if project_owned_by_user(project, current_user) %>
+          	<%= link_to 'Edit', edit_project_path(project), class: 'btn' %>
+          	<%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+					<%# end %>
         </td>
       </tr>
     <% end %>

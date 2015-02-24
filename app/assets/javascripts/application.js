@@ -13,3 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require twitter/bootstrap
+
+$('form#new_task').submit(function() {
+    var valuesToSubmit = $(this).serialize();
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'), //sumbits it to the given url of the form
+        data: valuesToSubmit,
+        dataType: "HTML"
+    }).success(function(data){
+          $('#tasks').append(data);
+          $("input#task_name").val('');
+          $("input#task_name").focus();
+    });
+    return false; // prevents normal behaviour
+});

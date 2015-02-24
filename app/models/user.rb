@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
     "#{fname} #{lname}"
   end
 
+  def is_owner_of?(project)
+    self.includes?(project)
+  end
 
 
 end
